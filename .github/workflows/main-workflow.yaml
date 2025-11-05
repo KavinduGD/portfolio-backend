@@ -5,11 +5,22 @@ on:
         branches:
             - main
         types:
-            - closed # triggers when PR is closed
+            - closed
 jobs:
     run-tests:
-        if: github.event.pull_request.merged == true # only if merged, not just closed
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
+
+            - name: setup node js enviroment
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "22.21.0"
+
+            - name: Run terminal commands
+              run: |
+                  echo "Hello from terminal"
+                  pwd
+                  ls -la
+                  node -v
