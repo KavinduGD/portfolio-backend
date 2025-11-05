@@ -7,7 +7,7 @@ on:
         types:
             - closed
 jobs:
-    run-tests:
+    Build_and_test:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code

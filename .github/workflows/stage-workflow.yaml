@@ -1,4 +1,4 @@
-name: Test Stage Branch
+name: Stage workflow
 
 on:
     pull_request:
@@ -7,9 +7,20 @@ on:
         types:
             - closed
 jobs:
-    run-tests:
-        if: github.event.pull_request.merged == true
+    Build_and_test:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
+
+            - name: setup node js enviroment
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "22.21.0"
+
+            - name: Run terminal commands
+              run: |
+                  echo "Hello from terminal"
+                  pwd
+                  ls -la
+                  node -v
