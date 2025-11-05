@@ -54,5 +54,5 @@ jobs:
 
             - name: Build and Push Docker image
               run: |
-                  docker build -t ${{ env.DOCKERHUB_USERNAME }}/ts-backend:${TAG} .
-                  docker push ${{ env.DOCKERHUB_USERNAME }}/ts-backend:${TAG}
+                  docker build -t ${{ env.DOCKERHUB_USERNAME }}/stage/backend:${TAG} .
+                  docker push ${{ env.DOCKERHUB_USERNAME }}/stage/backend:${TAG}
