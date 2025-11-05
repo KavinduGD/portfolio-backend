@@ -18,9 +18,8 @@ jobs:
               with:
                   node-version: "22.21.0"
 
-            - name: Run terminal commands
-              run: |
-                  echo "Hello from terminal"
-                  pwd
-                  ls -la
-                  node -v
+            - name: Install Dependancies
+              run: npm ci
+
+            - name: Build application
+              run: npm run build
