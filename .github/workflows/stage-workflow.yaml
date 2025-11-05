@@ -6,8 +6,12 @@ on:
             - stage
         types:
             - closed
+env:
+    DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
+    DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
 jobs:
-    Build_and_test:
+    build_and_test:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -23,3 +27,17 @@ jobs:
 
             - name: Build application
               run: npm run build
+
+    docker_image_build_and_push:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Login to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                  username: ${{ env.DOCKERHUB_USERNAME }}
+                  password: ${{ env.DOCKERHUB_TOKEN }}
+
+            - name: check user logged correctly
+              run: |
+                  docker info
+                  echo ${DOCKERHUB_USERNAME}
