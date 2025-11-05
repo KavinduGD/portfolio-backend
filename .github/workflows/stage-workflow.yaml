@@ -1,0 +1,15 @@
+name: Test Stage Branch
+
+on:
+    pull_request:
+        branches:
+            - stage
+        types:
+            - closed
+jobs:
+    run-tests:
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
