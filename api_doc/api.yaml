@@ -1,0 +1,37 @@
+openapi: "3.0.3"
+info:
+  title: Portfolio
+  version: "1.0"
+  description: |
+    # Description
+    This is a sample API documentation for Portfolio backend. Backend is use by both `admin` and `client` applications.
+
+    Backend hold these main resources:
+    - User details
+    - Skills details
+    - Project details
+    - Certificate details
+
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /user:
+    get:
+      responses:
+        "200":
+          description: OK
+  /skills:
+    get:
+      responses:
+        "200":
+          description: OK
+  /projects:
+    get:
+      responses:
+        "200":
+          description: OK
+  /certificates:
+    get:
+      responses:
+        "200":
+          description: OK
