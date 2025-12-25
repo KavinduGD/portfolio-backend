@@ -33,6 +33,8 @@ jobs:
       - name: Build application
         run: npm run build
 
+      - name: Test application
+        run: npm run test
   docker_image_build_and_push:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest

@@ -10,3 +10,8 @@ app.get("/", (req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`Backend server is running on http://localhost:${port}`);
 });
+
+// A simple function to test
+export function add(a: number, b: number): number {
+  return a + b;
+}
