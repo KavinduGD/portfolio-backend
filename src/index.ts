@@ -1,17 +1,23 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
+import morgan from "morgan";
+import userRoutes from "./routes/userRoutes";
+import errorHandler from "./middleware/errorMiddleware";
 
 const app = express();
-const port = 3000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, TypeScript + Express!12345678");
-});
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+app.use(cors());
+app.use(express.json());
+
+const port = process.env.PORT || 3000;
+
+app.use("/api/user", userRoutes);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Backend server is running on http://localhost:${port}`);
 });
-
-// A simple function to test
-export function add(a: number, b: number): number {
-  return a + b;
-}
