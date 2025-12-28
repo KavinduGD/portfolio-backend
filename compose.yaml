@@ -2,6 +2,8 @@ name: portfolio
 
 services:
   backend:
+    depends_on:
+      - mongodb
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -9,6 +11,9 @@ services:
       - "3000:3000"
     env_file:
       - .env
+      - .env.db.user
+    environment:
+      - MONGODB_HOST=mongodb
     develop:
       watch:
         - action: sync
@@ -16,6 +21,31 @@ services:
           target: /app/src
     volumes:
       - certificate_data:/app/certificate
+    networks:
+      - portfolio_net
+
+  mongodb:
+    image: mongodb/mongodb-community-server:8.0-ubuntu2204
+    restart: always
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env.db.root
+      - .env.db.user
+    volumes:
+      - type: volume
+        source: mongo_data
+        target: /data/db
+      - type: bind
+        source: ./dbContainerConfig/mongo-init.js
+        target: /docker-entrypoint-initdb.d/mongo-init.js
+        read_only: true
+    networks:
+      - portfolio_net
 
 volumes:
   certificate_data:
+  mongo_data:
+
+networks:
+  portfolio_net:

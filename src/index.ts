@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import userRoutes from "./routes/userRoutes";
 import errorHandler from "./middleware/errorMiddleware";
+import connectDB from "./config/db";
 
 const app = express();
 
@@ -18,6 +19,8 @@ app.use("/api/user", userRoutes);
 
 app.use(errorHandler);
 
-app.listen(port, () => {
-  console.log(`Backend server is running on http://localhost:${port}`);
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`Backend server is running on http://localhost:${port}`);
+  });
 });

@@ -20,8 +20,10 @@
   "homepage": "https://github.com/KavinduGD/portfolio-backend#readme",
   "description": "",
   "dependencies": {
+    "@types/mongoose": "^5.11.96",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongoose": "^9.0.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
