@@ -24,3 +24,5 @@ connectDB().then(() => {
     console.log(`Backend server is running on http://localhost:${port}`);
   });
 });
+
+

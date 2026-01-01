@@ -5,7 +5,7 @@ import User from "../models/userModel";
 const getUserData = asyncHandler(async (req: Request, res: Response) => {
   const user = await User.findOne();
 
-  if (user) {
+  if (!user) {
     res.status(404);
     throw new Error("There are no user in the DB");
   }
