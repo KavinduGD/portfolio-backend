@@ -43,6 +43,7 @@ const addUser = asyncHandler(async (req: Request, res: Response) => {
   ) {
     throw new Error("All fields are required");
   }
+
   const existingUser = await User.findOne();
 
   if (existingUser) {
@@ -72,4 +73,50 @@ const addUser = asyncHandler(async (req: Request, res: Response) => {
   });
 });
 
-export { getUserData, addUser };
+const updateUser = asyncHandler(async (req: Request, res: Response) => {
+  const updates = req.body;
+  const user = await User.findOne();
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User do not exists");
+  }
+
+  // Mongoose uses strict: true by default
+  // ✅ Result
+  // Fields defined in the schema → updated
+  // Fields NOT in the schema (like anotherFeild) → IGNORED
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    { $set: updates }, // Use $set to update only specific fields
+    { new: true, runValidators: true }, // Return the updated document and run schema validators
+  );
+
+  res.status(200).json({
+    message: "User updated successfully",
+    user: updatedUser,
+  });
+});
+
+const deleteUser = asyncHandler(async (req: Request, res: Response) => {
+  const user = await User.findOne();
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User do not exists");
+  }
+
+  const response = await User.deleteMany({});
+
+  if (response.deletedCount === 0) {
+    res.status(500);
+    throw new Error("Failed to delete the user");
+  }
+
+  res.status(200).json({
+    message: "User deleted successfully",
+  });
+});
+
+export { getUserData, addUser, updateUser, deleteUser };
