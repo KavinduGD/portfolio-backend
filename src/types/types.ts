@@ -24,3 +24,16 @@ export interface IAdmin extends Document {
   email: string;
   password: string;
 }
+
+export interface ITechnology extends Document {
+  technology: string;
+  level: number;
+  icon: string;
+  type: string;
+}
+
+export interface ISkill extends Document {
+  skill: string;
+  skillImage: string;
+  description: String;
+}

@@ -19,8 +19,9 @@ services:
         - action: sync
           path: ./src
           target: /app/src
+
     volumes:
-      - certificate_data:/app/certificate
+      - upload_images_data:/app/uploads
     networks:
       - portfolio_net
 
@@ -44,7 +45,7 @@ services:
       - portfolio_net
 
 volumes:
-  certificate_data:
+  upload_images_data:
   mongo_data:
 
 networks:

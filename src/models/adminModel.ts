@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 import type { IAdmin } from "../types/types";
 import bcrypt from "bcrypt";
-import { NextFunction } from "express";
 
 const adminSchema = new mongoose.Schema<IAdmin>({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,

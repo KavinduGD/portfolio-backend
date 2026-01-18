@@ -1,3 +1,30 @@
+import mongoose from "mongoose";
+import { ITechnology } from "../types/types";
+
+const technologySchema = new mongoose.Schema<ITechnology>({
+  technology: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  level: {
+    type: Number,
+    required: true,
+  },
+  icon: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+});
+
+const Technology = mongoose.model<ITechnology>("Technology", technologySchema);
+
+export default Technology;
 /* 
 technology
 level
