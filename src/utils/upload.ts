@@ -7,7 +7,7 @@ const createUploader = (folderName: string, maximumFileSize: number) => {
   const uploadPath = path.join(process.cwd(), "uploads", folderName);
 
   // ensure folder exists
-  if (fs.existsSync(uploadPath)) {
+  if (!fs.existsSync(uploadPath)) {
     fs.mkdirSync(uploadPath, { recursive: true });
   }
 

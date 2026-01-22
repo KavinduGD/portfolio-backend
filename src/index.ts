@@ -5,12 +5,13 @@ import userRoutes from "./routes/userRoutes";
 import adminRoutes from "./routes/adminRoutes";
 import technologyRoutes from "./routes/technologyRoutes";
 import skillRoutes from "./routes/skillRoues";
+import certificateRoutes from "./routes/certificateRoutes";
+import projectRoutes from "./routes/projectRoutes";
 import errorHandler from "./middleware/errorMiddleware";
 import connectDB from "./config/db";
 import seedAdmin from "./config/seedAdmin";
 import cookieParser from "cookie-parser";
 import path from "path";
-import certificateRoutes from "./routes/certificateRoutes";
 
 const app = express();
 
@@ -30,7 +31,9 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/technology", technologyRoutes);
 app.use("/api/skill", skillRoutes);
 app.use("/api/certificate", certificateRoutes);
+app.use("/api/project", projectRoutes);
 
+// Error Handling Middleware
 app.use(errorHandler);
 
 connectDB().then(async () => {

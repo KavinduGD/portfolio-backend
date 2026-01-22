@@ -48,3 +48,24 @@ export interface ICertificate extends Document {
   tags: string[];
   score: number;
 }
+
+export interface IProject extends Document {
+  projectName: string;
+  projectDescription: string;
+  startedDate: string;
+  technologies: string;
+  projectImages: string[];
+  links: {
+    linkName: string;
+    link: string;
+  };
+
+  architectureImages: {
+    diagramName: string;
+    imageName: string;
+  }[];
+
+  architectureDescription: string;
+  tags: string[];
+  score: number;
+}
