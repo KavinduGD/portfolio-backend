@@ -37,3 +37,14 @@ export interface ISkill extends Document {
   skillImage: string;
   description: String;
 }
+
+export interface ICertificate extends Document {
+  name: string;
+  issuer: string;
+  issueDate: string;
+  certificateImage: string;
+  credentialsId: string;
+  certificateLink: string;
+  tags: string[];
+  score: number;
+}

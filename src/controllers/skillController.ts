@@ -22,7 +22,7 @@ const getSkills = asyncHandler(async (req: Request, res: Response) => {
 const addSkill = asyncHandler(async (req: Request, res: Response) => {
   if (!req.file) {
     res.status(400);
-    throw new Error("Icon image is reuired");
+    throw new Error("Icon image is required");
   }
 
   const { skill, description } = req.body;
@@ -78,7 +78,7 @@ const updateSkill = asyncHandler(async (req: Request, res: Response) => {
   let updates = req.body;
 
   if (req.file) {
-    updates = { ...updates, icon: req.file!.filename };
+    updates.skillImage = req.file.filename;
   }
 
   try {

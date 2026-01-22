@@ -10,6 +10,7 @@ import connectDB from "./config/db";
 import seedAdmin from "./config/seedAdmin";
 import cookieParser from "cookie-parser";
 import path from "path";
+import certificateRoutes from "./routes/certificateRoutes";
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/technology", technologyRoutes);
 app.use("/api/skill", skillRoutes);
+app.use("/api/certificate", certificateRoutes);
 
 app.use(errorHandler);
 

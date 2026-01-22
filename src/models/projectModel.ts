@@ -5,7 +5,7 @@ description: string
 dateStarted: Date
 technologies: string[technologies from ]
 projectImageUrls: string[]
-links: string[githublink,liveDemoLink,youtubeLink]
+links: { linkName: string; link: string }[];
 tags: string[]
 score: number
 architectureImages: string[{diagramName:string, link: string}]
