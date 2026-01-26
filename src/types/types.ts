@@ -9,11 +9,12 @@ export interface IUser extends Document {
   age: number;
   address: string;
   languages: string[];
-  phone: number;
+  phone: string;
   jobTitle: string;
   education: {
     institution: string;
     degree: string;
+    location: string;
     startYear: string;
     endYear: string;
     results: string;

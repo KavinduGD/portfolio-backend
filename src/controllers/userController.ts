@@ -18,7 +18,7 @@ const addUser = asyncHandler(async (req: Request, res: Response) => {
     fullName,
     shortname,
     email,
-    password,
+
     about,
     age,
     address,
@@ -32,7 +32,6 @@ const addUser = asyncHandler(async (req: Request, res: Response) => {
     !fullName ||
     !shortname ||
     !email ||
-    !password ||
     !about ||
     !age ||
     !address ||
@@ -41,6 +40,7 @@ const addUser = asyncHandler(async (req: Request, res: Response) => {
     !jobTitle ||
     !education
   ) {
+    res.status(400);
     throw new Error("All fields are required");
   }
 
@@ -55,7 +55,6 @@ const addUser = asyncHandler(async (req: Request, res: Response) => {
     fullName,
     shortname,
     email,
-    password,
     about,
     age,
     address,

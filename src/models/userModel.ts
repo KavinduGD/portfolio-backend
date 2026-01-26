@@ -23,8 +23,12 @@ const educationSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    location: {
+      type: String,
+      required: true,
+    },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const userSchema = new mongoose.Schema<IUser>(
@@ -43,11 +47,6 @@ const userSchema = new mongoose.Schema<IUser>(
       lowercase: true,
       match: [/^\S+@\S+\.\S+$/, "Invalid email"],
     },
-    password: {
-      type: String,
-      required: true,
-      select: false,
-    },
     about: {
       type: String,
       required: true,
@@ -65,7 +64,7 @@ const userSchema = new mongoose.Schema<IUser>(
       required: true,
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
     },
     jobTitle: {
@@ -77,25 +76,9 @@ const userSchema = new mongoose.Schema<IUser>(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const User = mongoose.model<IUser>("User", userSchema);
 
 export default User;
-
-/* 
-fullName:string,
-shortName:string
-email : string
-password: string
-about : string
-age : number
-address : string
-Languages : string[]
-linkedIn : string
-links: [github : string, facebook: string, twitter: string, youtube: string]
-phone : string
-jobTitle : string
-education : [{institution: string, degree: string, startYear: string, endYear: string, results: string}]
-*/
