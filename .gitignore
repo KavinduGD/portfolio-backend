@@ -42,3 +42,5 @@ env/
 venv/
 ENV/
 env.bak/
+
+scripts/**/*Images/**

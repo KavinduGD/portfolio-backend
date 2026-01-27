@@ -26,10 +26,20 @@ const createUploader = (folderName: string, maximumFileSize: number) => {
 
   // 2. Define the File Filter
   const fileFilter: multer.Options["fileFilter"] = (req, file, cb) => {
-    if (file.mimetype.startsWith("image/")) {
+    const allowedMimeTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "image/gif",
+      "image/svg+xml",
+      "application/xml",
+      "text/xml",
+    ];
+
+    if (allowedMimeTypes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error("Only image files are allowed"));
+      cb(new Error("Only image files  are allowed"));
     }
   };
 

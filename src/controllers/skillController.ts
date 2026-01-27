@@ -9,7 +9,7 @@ const getSkills = asyncHandler(async (req: Request, res: Response) => {
 
   const skillsWithImageUrls = skills.map((skill) => {
     return {
-      id: skill._id,
+      skillID: skill._id,
       skill: skill.skill,
       description: skill.description,
       imageUrl: `${req.protocol}://${req.get("host")}/uploads/skill/${skill.skillImage}`,
