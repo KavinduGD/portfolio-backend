@@ -52,6 +52,7 @@ const addCertificate = asyncHandler(async (req: Request, res: Response) => {
     res.status(400);
     throw new Error("All fields are required");
   }
+
   const parsedTags = JSON.parse(tags);
   const newCertificate = new Certificate({
     name,
@@ -82,7 +83,11 @@ const addCertificate = asyncHandler(async (req: Request, res: Response) => {
         imageUrl: `${req.protocol}://${req.get("host")}/uploads/certificate/${savedCertificate.certificateImage}`,
       },
     });
-  } catch (err) {}
+  } catch (err) {
+    await fs.unlink(req.file.path);
+    res.status(500);
+    throw err;
+  }
 });
 
 const updateCertificate = asyncHandler(async (req: Request, res: Response) => {

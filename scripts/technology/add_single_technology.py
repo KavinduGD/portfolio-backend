@@ -21,7 +21,7 @@ if not ok:
 
 # ---------- TECHNOLOGY DATA ----------
 tech = {
-    "technology": "Docker12",
+    "technology": "Docker122",
     "level": "2",
     "type": "DevOps",
     "image": "../assets/technologyImages/git.jpg",
