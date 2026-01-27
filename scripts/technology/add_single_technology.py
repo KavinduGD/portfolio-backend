@@ -5,6 +5,7 @@ Add ONE technology with icon image
 
 from portfolio_client import PortfolioClient
 import os
+import mimetypes
 
 client = PortfolioClient()
 
@@ -20,10 +21,10 @@ if not ok:
 
 # ---------- TECHNOLOGY DATA ----------
 tech = {
-    "technology": "Docker",
-    "level": "Advanced",
+    "technology": "Docker12",
+    "level": "2",
     "type": "DevOps",
-    "image": "../assets/technologyIcons/docker.svg",
+    "image": "../assets/technologyImages/git.jpg",
 }
 
 if not os.path.exists(tech["image"]):
@@ -31,6 +32,12 @@ if not os.path.exists(tech["image"]):
     exit()
 
 url = f"{client.base_url}/technology"
+
+image_path = tech["image"]
+
+mime_type, _ = mimetypes.guess_type(image_path)
+if mime_type is None:
+    mime_type = "application/octet-stream"
 
 data = {
     "technology": tech["technology"],
@@ -42,7 +49,7 @@ files = {
     "tech-icon-image": (
         os.path.basename(tech["image"]),
         open(tech["image"], "rb"),
-        "image/svg+xml"
+        mime_type
     )
 }
 

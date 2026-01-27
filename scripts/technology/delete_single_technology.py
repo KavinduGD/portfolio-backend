@@ -17,7 +17,7 @@ if not ok:
     print("❌ Admin login failed")
     exit()
 
-technology_id = "PUT_TECH_ID_HERE"
+technology_id = "69785d4f00244c16ec1e2054"
 
 url = f"{client.base_url}/technology/{technology_id}"
 
