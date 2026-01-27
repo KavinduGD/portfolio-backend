@@ -175,6 +175,7 @@ const addProject = asyncHandler(async (req: Request, res: Response) => {
       res.status(500);
       throw new Error("Server Error");
     }
+    // res.status(500);
     throw err;
   }
 });

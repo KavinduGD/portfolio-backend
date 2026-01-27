@@ -4,9 +4,10 @@ function errorHandler(
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void {
-  const statusCode = res.statusCode || 500;
+  const statusCode =
+    res.statusCode && res.statusCode !== 200 ? res.statusCode : 500;
   res.status(statusCode);
   res.json({
     message: err.message,
