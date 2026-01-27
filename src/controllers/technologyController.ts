@@ -9,7 +9,7 @@ const getAllTechnologies = asyncHandler(async (req: Request, res: Response) => {
 
   const technologiesWithImageUrl = technologies.map((technology) => {
     return {
-      id: technology._id,
+      technologyID: technology._id,
       technology: technology.technology,
       level: technology.level,
       type: technology.type,

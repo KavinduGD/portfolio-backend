@@ -31,7 +31,7 @@ print(f"Found {len(technologies)} technologies")
 
 # ---------- DELETE LOOP ----------
 for tech in technologies:
-    tech_id = tech["id"]
+    tech_id = tech["technologyID"]
     del_url = f"{client.base_url}/technology/{tech_id}"
 
     delete_res = client.session.delete(del_url)
