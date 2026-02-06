@@ -4,34 +4,791 @@ info:
   version: "1.0"
   description: |
     # Description
-    This is a sample API documentation for Portfolio backend. Backend is use by both `admin` and `client` applications.
+    This is a sample API documentation for Portfolio backend. Backend is used by both `admin` and `client` applications.
 
-    Backend hold these main resources:
+    Backend holds these main resources:
     - User details
     - Skills details
     - Project details
     - Certificate details
+    - Technology details
 
 servers:
-  - url: https://api.server.test/v1
+  - url: http://localhost:3000/api
+    description: Local Development Server
+
 paths:
   /user:
     get:
+      tags:
+        - User
+      summary: Get user data
+      description: Retrieve the user profile information.
       responses:
         "200":
-          description: OK
-  /skills:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: User not found
+    post:
+      tags:
+        - User
+      summary: Add a new user
+      description: Create a new user profile. Authenticated admin only.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        "201":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  user:
+                    $ref: "#/components/schemas/User"
+        "400":
+          description: Missing required fields
+        "409":
+          description: User already exists
+    patch:
+      tags:
+        - User
+      summary: Update user data
+      description: Update existing user profile information. Authenticated admin only.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        "200":
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  user:
+                    $ref: "#/components/schemas/User"
+        "404":
+          description: User not found
+    delete:
+      tags:
+        - User
+      summary: Delete user
+      description: Delete the user profile. Authenticated admin only.
+      responses:
+        "200":
+          description: User deleted successfully
+        "404":
+          description: User not found
+        "500":
+          description: Failed to delete user
+
+  /admin/login:
     get:
+      tags:
+        - Admin
+      summary: Admin login
+      description: Authenticate admin user by passing credentials in the request body. Sets an HTTP-only cookie.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
       responses:
         "200":
-          description: OK
-  /projects:
+          description: User logged in successfully
+        "400":
+          description: Invalid email or password
+        "404":
+          description: Admin data not found
+
+  /technology:
     get:
+      tags:
+        - Technology
+      summary: Get all technologies
+      description: Retrieve a list of all technologies with icon URLs.
       responses:
         "200":
-          description: OK
-  /certificates:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TechnologyResponse"
+    post:
+      tags:
+        - Technology
+      summary: Add a new technology
+      description: Add a new technology with an icon image. Authenticated admin only.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - technology
+                - level
+                - type
+                - tech-icon-image
+              properties:
+                technology:
+                  type: string
+                level:
+                  type: number
+                type:
+                  type: string
+                tech-icon-image:
+                  type: string
+                  format: binary
+      responses:
+        "201":
+          description: Technology added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  technology:
+                    $ref: "#/components/schemas/TechnologyResponse"
+        "400":
+          description: Missing fields or image
+        "409":
+          description: Technology already exists
+
+  /technology/{id}:
+    patch:
+      tags:
+        - Technology
+      summary: Update a technology
+      description: Update details or icon of a technology. Authenticated admin only.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Technology ID
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                technology:
+                  type: string
+                level:
+                  type: number
+                type:
+                  type: string
+                tech-icon-image:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Technology updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  updatedTechnology:
+                    $ref: "#/components/schemas/TechnologyResponse"
+        "404":
+          description: Invalid Technology ID
+    delete:
+      tags:
+        - Technology
+      summary: Delete a technology
+      description: Remove a technology. Authenticated admin only.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Technology ID
+      responses:
+        "200":
+          description: Technology deleted successfully
+        "404":
+          description: Technology not found
+
+  /skill:
     get:
+      tags:
+        - Skill
+      summary: Get all skills
+      description: Retrieve a list of all skills.
       responses:
         "200":
-          description: OK
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SkillResponse"
+    post:
+      tags:
+        - Skill
+      summary: Add a new skill
+      description: Add a new skill with an image. Authenticated admin only.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - skill
+                - description
+                - skill-image
+              properties:
+                skill:
+                  type: string
+                description:
+                  type: string
+                skill-image:
+                  type: string
+                  format: binary
+      responses:
+        "201":
+          description: Skill added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  skill:
+                    $ref: "#/components/schemas/SkillResponse"
+        "400":
+          description: Missing fields or image
+        "409":
+          description: Skill already exists
+
+  /skill/{id}:
+    patch:
+      tags:
+        - Skill
+      summary: Update a skill
+      description: Update details or image of a skill. Authenticated admin only.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Skill ID
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                skill:
+                  type: string
+                description:
+                  type: string
+                skill-image:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Skill updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  skill:
+                    $ref: "#/components/schemas/SkillResponse"
+        "404":
+          description: Invalid Skill ID
+    delete:
+      tags:
+        - Skill
+      summary: Delete a skill
+      description: Remove a skill. Authenticated admin only.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Skill ID
+      responses:
+        "200":
+          description: Skill deleted successfully
+        "404":
+          description: Skill not found
+
+  /certificate:
+    get:
+      tags:
+        - Certificate
+      summary: Get all certificates
+      description: Retrieve a list of all certificates.
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CertificateResponse"
+    post:
+      tags:
+        - Certificate
+      summary: Add a new certificate
+      description: Add a new certificate with an image. Authenticated admin only.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - issuer
+                - issueDate
+                - credentialsId
+                - certificateLink
+                - tags
+                - score
+                - certificate-image
+              properties:
+                name:
+                  type: string
+                issuer:
+                  type: string
+                issueDate:
+                  type: string
+                credentialsId:
+                  type: string
+                certificateLink:
+                  type: string
+                tags:
+                  type: string
+                  description: JSON stringified array of tags
+                score:
+                  type: number
+                certificate-image:
+                  type: string
+                  format: binary
+      responses:
+        "201":
+          description: Certificate added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  certificate:
+                    $ref: "#/components/schemas/CertificateResponse"
+        "400":
+          description: Missing fields or image
+    
+  /certificate/{id}:
+    patch:
+      tags:
+        - Certificate
+      summary: Update a certificate
+      description: Update details or image of a certificate. Authenticated admin only.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Certificate ID
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                issuer:
+                  type: string
+                issueDate:
+                  type: string
+                credentialsId:
+                  type: string
+                certificateLink:
+                  type: string
+                tags:
+                  type: string
+                  description: JSON stringified array of tags
+                score:
+                  type: number
+                certificate-image:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Certificate updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  certificate:
+                    $ref: "#/components/schemas/CertificateResponse"
+        "404":
+          description: Invalid Certificate ID
+    delete:
+      tags:
+        - Certificate
+      summary: Delete a certificate
+      description: Remove a certificate. Authenticated admin only.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Certificate ID
+      responses:
+        "200":
+          description: Certificate deleted successfully
+        "404":
+          description: Certificate not found
+
+  /project:
+    get:
+      tags:
+        - Project
+      summary: Get all projects
+      description: Retrieve a list of all projects.
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Get all projects"
+    post:
+      tags:
+        - Project
+      summary: Add a new project
+      description: Add a new project with images and diagrams. Authenticated admin only.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - projectName
+                - projectDescription
+                - startedDate
+                - technologies
+                - links
+                - architectureDescription
+                - tags
+                - score
+                - project-image
+              properties:
+                projectName:
+                  type: string
+                projectDescription:
+                  type: string
+                startedDate:
+                  type: string
+                technologies:
+                  type: string
+                  description: JSON stringified array of technology IDs
+                links:
+                  type: string
+                  description: JSON stringified array of link objects
+                architectureDescription:
+                  type: string
+                tags:
+                  type: string
+                  description: JSON stringified array of tags
+                score:
+                  type: number
+                project-image:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Exactly 2 project images required
+                architecture:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      image:
+                        type: string
+                        format: binary
+                      diagramName:
+                        type: string
+      responses:
+        "200":
+          description: Project added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  project:
+                    $ref: "#/components/schemas/ProjectResponse"
+        "400":
+          description: Missing required fields or images
+        "500":
+          description: Server Error
+
+  /project/{id}:
+    patch:
+      tags:
+        - Project
+      summary: Update a project
+      description: Update details of a project (Placeholder).
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Project ID
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Update a project"
+    delete:
+      tags:
+        - Project
+      summary: Delete a project
+      description: Remove a project (Placeholder).
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Project ID
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Add a new project" 
+
+components:
+  schemas:
+    Education:
+      type: object
+      properties:
+        institution:
+          type: string
+        degree:
+          type: string
+        startYear:
+          type: string
+        endYear:
+          type: string
+        results:
+          type: string
+    
+    UserInput:
+      type: object
+      properties:
+        fullName:
+          type: string
+        shortname:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+        about:
+          type: string
+        age:
+          type: number
+        address:
+          type: string
+        languages:
+          type: array
+          items:
+            type: string
+        phone:
+          type: number
+        jobTitle:
+          type: string
+        education:
+          type: array
+          items:
+            $ref: "#/components/schemas/Education"
+
+    User:
+      allOf:
+        - $ref: "#/components/schemas/UserInput"
+        - type: object
+          properties:
+            _id:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+
+    TechnologyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        technology:
+          type: string
+        level:
+          type: number
+        type:
+          type: string
+        imageUrl:
+          type: string
+
+    SkillResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        skill:
+          type: string
+        description:
+          type: string
+        imageUrl:
+          type: string
+
+    CertificateResponse:
+      type: object
+      properties:
+        certificateID:
+          type: string
+        name:
+          type: string
+        issuer:
+          type: string
+        issueDate:
+          type: string
+        credentialsId:
+          type: string
+        certificateLink:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        score:
+          type: number
+        imageUrl:
+          type: string
+
+    ProjectResponse:
+      type: object
+      properties:
+        projectID:
+          type: string
+        projectName:
+          type: string
+        projectDescription:
+          type: string
+        startedDate:
+          type: string
+        technologies:
+          type: array
+          items:
+            type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              linkName:
+                type: string
+              link:
+                type: string
+        architectureDescription:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        score:
+          type: number
+        projectImageUrls:
+          type: array
+          items:
+            type: string
+        architectureImageUrls:
+          type: array
+          items:
+            type: object
+            properties:
+              diagramName:
+                type: string
+              link:
+                type: string

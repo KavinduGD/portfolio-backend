@@ -1,5 +1,9 @@
 name: backend workflow
 
+concurrency:
+  group: portfolio-backend-${{ github.ref }}
+  cancel-in-progress: false
+
 on:
   pull_request:
     branches:
