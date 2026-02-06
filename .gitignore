@@ -21,6 +21,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env*
 
 # OS files
 .DS_Store
@@ -30,3 +31,16 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+env.bak/
+
+scripts/**/*Images/**
