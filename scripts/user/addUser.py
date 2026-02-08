@@ -54,7 +54,7 @@ user_data = {
     "shortname": "Kavindu",
     "email": "kavidudharmasiri90@gmail.com",
     "about": (
-        "Software engineer specializing in DevOps, focused on automating infrastructure, optimizing CI/CD pipelines, improving system reliability, scalability, and performance through cloud technologies, containerization, monitoring, and best engineering practices."
+        "Software Engineer specializing in DevOps, focused on infrastructure automation, CI/CD pipelines, and GitOps practices. Experienced in cloud technologies, containerization, and scalable system design, with strong full-stack web development skills and end-to-end application deployment in cloud-native environments."
     ),
     "age": 25,
     "address": "49/133 N, Thiththalapitigoda, Yakkala, Gampaha, Sri Lanka",
