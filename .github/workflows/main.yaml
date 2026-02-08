@@ -14,6 +14,7 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  MANIFESTS_REPO_TOKEN: ${{ secrets.MANIFESTS_REPO_TOKEN }}
 
 jobs:
   build_and_test:
@@ -39,10 +40,15 @@ jobs:
 
       - name: Test application
         run: npm run test
+
   docker_image_build_and_push:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     needs: build_and_test
+
+    outputs:
+      image_tag: ${{ steps.set_tag.outputs.tag }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -55,15 +61,62 @@ jobs:
           password: ${{ env.DOCKERHUB_TOKEN }}
 
       - name: Set image tag
-        run: echo "TAG=${GITHUB_SHA::10}" >> $GITHUB_ENV
+        id: set_tag
+        run: echo "tag=${GITHUB_SHA::10}" >> $GITHUB_OUTPUT
 
       - name: Build and Push Docker image
         run: |
+          TAG=${{ steps.set_tag.outputs.tag }}
+
           if [ "${{ github.ref_name }}" = "main" ]; then
             IMAGE_NAME="${{ env.DOCKERHUB_USERNAME }}/backend:${TAG}"
           else
             IMAGE_NAME="${{ env.DOCKERHUB_USERNAME }}/stage-backend:${TAG}"
           fi
+
           echo "Building and pushing image: $IMAGE_NAME"
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
+
+  update_manifests:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    needs: docker_image_build_and_push
+
+    steps:
+      - name: Checkout manifests repo
+        run: |
+          git clone https://x-access-token:${{ env.MANIFESTS_REPO_TOKEN }}@github.com/KavinduGD/portfolio-manifests.git
+          cd portfolio-manifests
+          git checkout main
+
+      - name: Update backend image tag
+        run: |
+          pwd
+          ls -la
+          cd portfolio-manifests
+          ls -la
+          ls ./prod
+          ls ./stage
+          TAG="${{ needs.docker_image_build_and_push.outputs.image_tag }}"
+
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            sed -i "s|image: kavinduorg/backend:.*|image: kavinduorg/backend:${TAG}|" ./prod/backend-patch.yaml
+          else
+            sed -i "s|image: kavinduorg/stage-backend:.*|image: kavinduorg/stage-backend:${TAG}|" ./stage/backend-patch.yaml
+          fi
+
+      - name: Commit and push changes
+        run: |
+          cd portfolio-manifests
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add .
+          git commit -m "chore: update backend image to ${{ needs.docker_image_build_and_push.outputs.image_tag }}"
+          git push origin main

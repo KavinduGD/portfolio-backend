@@ -12,6 +12,7 @@ ok, _ = client.login(
 )
 if not ok:
     print("❌ Admin login failed")
+
     exit()
 
 # ---------- CERTIFICATE DATA ----------
