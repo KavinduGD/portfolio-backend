@@ -40,6 +40,7 @@ jobs:
 
       - name: Test application
         run: npm run test
+
   docker_image_build_and_push:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
@@ -95,25 +96,27 @@ jobs:
           ls -la
           cd portfolio-manifests
           ls -la
-      #     TAG="${{ needs.docker_image_build_and_push.outputs.image_tag }}"
+          ls ./prod
+          ls ./stage
+          TAG="${{ needs.docker_image_build_and_push.outputs.image_tag }}"
 
-      #     if [ "${{ github.ref_name }}" = "main" ]; then
-      #       sed -i "s|image: kavinduorg/backend:.*|image: kavinduorg/backend:${TAG}|" prod/backend-patch.yaml
-      #     else
-      #       sed -i "s|image: kavinduorg/stage-backend:.*|image: kavinduorg/stage-backend:${TAG}|" stage/backend-patch.yaml
-      #     fi
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            sed -i "s|image: kavinduorg/backend:.*|image: kavinduorg/backend:${TAG}|" ./prod/backend-patch.yaml
+          else
+            sed -i "s|image: kavinduorg/stage-backend:.*|image: kavinduorg/stage-backend:${TAG}|" ./stage/backend-patch.yaml
+          fi
 
-      # - name: Commit and push changes
-      #   run: |
-      #     cd portfolio-manifests
-      #     git config user.name "github-actions"
-      #     git config user.email "github-actions@github.com"
+      - name: Commit and push changes
+        run: |
+          cd portfolio-manifests
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
 
-      #     if git diff --quiet; then
-      #       echo "No changes to commit"
-      #       exit 0
-      #     fi
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
 
-      #     git add .
-      #     git commit -m "chore: update backend image to ${{ needs.docker_image_build_and_push.outputs.image_tag }}"
-      #     git push origin main
+          git add .
+          git commit -m "chore: update backend image to ${{ needs.docker_image_build_and_push.outputs.image_tag }}"
+          git push origin main
