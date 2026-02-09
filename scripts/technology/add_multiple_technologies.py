@@ -147,6 +147,12 @@ technologies = [
         "image": "../assets/technologyImages/kustomize.png"
     },
     {
+        "technology": "ArgoCD",
+        "level": 85,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/argocd.png"
+    },
+    {
         "technology": "SonarQube",
         "level": 80,
         "type": "DevOps",
