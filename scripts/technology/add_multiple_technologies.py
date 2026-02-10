@@ -21,197 +21,229 @@ if not ok:
 
 technologies = [
     {
-        "technology": "Python",
-        "level": 90,
-        "type": "programming",
-        "image": "../assets/technologyImages/git.jpg"
-    },
-    {
         "technology": "JavaScript",
-        "level": 80,
-        "type": "programming",
-        "image": "../assets/technologyImages/react.webp"
-    },
-    {
-        "technology": "Java",
-        "level": 70,
-        "type": "programming",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 90,
+        "type": "Language",
+        "image": "../assets/technologyImages/javascript.png"
     },
     {
         "technology": "TypeScript",
+        "level": 85,
+        "type": "Language",
+        "image": "../assets/technologyImages/typescript.png"
+    },
+    {
+        "technology": "Python",
         "level": 80,
-        "type": "programming",
-        "image": "../assets/technologyImages/react.webp"
+        "type": "Language",
+        "image": "../assets/technologyImages/python.png"
+    },
+    {
+        "technology": "Java",
+        "level": 75,
+        "type": "Language",
+        "image": "../assets/technologyImages/java.png"
     },
     {
         "technology": "HTML",
-        "level": 90,
-        "type": "web",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 100,
+        "type": "Web Development",
+        "image": "../assets/technologyImages/html.png"
     },
     {
         "technology": "CSS",
+        "level": 95,
+        "type": "Web Development",
+        "image": "../assets/technologyImages/css.png"
+    },
+    {
+        "technology": "Nodejs",
         "level": 90,
-        "type": "web",
-        "image": "../assets/technologyImages/react.webp"
+        "type": "Web Development",
+        "image": "../assets/technologyImages/nodejs.png"
     },
     {
         "technology": "React",
         "level": 90,
-        "type": "web",
-        "image": "../assets/technologyImages/react.webp"
-    },
-    {
-        "technology": "Express",
-        "level": 80,
-        "type": "web",
-        "image": "../assets/technologyImages/git.jpg"
-    },
-    {
-        "technology": "Flask",
-        "level": 70,
-        "type": "web",
-        "image": "../assets/technologyImages/react.webp"
-    },
-    {
-        "technology": "WordPress",
-        "level": 70,
-        "type": "web",
-        "image": "../assets/technologyImages/git.jpg"
+        "type": "Web Development",
+        "image": "../assets/technologyImages/react.png"
     },
     {
         "technology": "OpenAPI",
+        "level": 90,
+        "type": "Web Development",
+        "image": "../assets/technologyImages/openapi.png"
+    },
+    {
+        "technology": "Flask",
+        "level": 85,
+        "type": "Web Development",
+        "image": "../assets/technologyImages/flask.png"
+    },
+    {
+        "technology": "WordPress",
         "level": 80,
-        "type": "web",
-        "image": "../assets/technologyImages/react.webp"
+        "type": "Web Development",
+        "image": "../assets/technologyImages/wordpress.png"
     },
     {
         "technology": "Docker",
-        "level": 80,
-        "type": "devops",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 95,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/docker.png"
     },
     {
         "technology": "Kubernetes",
-        "level": 70,
-        "type": "devops",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 90,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/kubernetes.png"
     },
     {
         "technology": "GitHub",
-        "level": 90,
-        "type": "devops",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 85,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/github.png"
     },
     {
         "technology": "GitHub Actions",
-        "level": 80,
-        "type": "devops",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 85,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/github_actions.png"
     },
     {
         "technology": "Jenkins",
-        "level": 70,
-        "type": "devops",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 90,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/jenkins.png"
     },
     {
         "technology": "Ansible",
-        "level": 60,
-        "type": "devops",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 90,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/ansible.png"
     },
     {
         "technology": "Terraform",
-        "level": 70,
-        "type": "devops",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 90,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/terraform.png"
     },
     {
         "technology": "GitLab CI/CD",
-        "level": 70,
-        "type": "devops",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 80,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/gitlab_ci_cd.png"
     },
     {
         "technology": "AWS CodePipeline",
-        "level": 60,
-        "type": "devops",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 75,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/aws_codepipeline.png"
+    },
+    {
+        "technology": "Kustomize",
+        "level": 85,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/kustomize.png"
+    },
+    {
+        "technology": "ArgoCD",
+        "level": 85,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/argocd.png"
+    },
+    {
+        "technology": "SonarQube",
+        "level": 80,
+        "type": "DevOps",
+        "image": "../assets/technologyImages/sonarqube.png"
     },
     {
         "technology": "Machine Learning",
-        "level": 70,
-        "type": "ai_ml",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 75,
+        "type": 'AI / Machine Learning',
+                "image": "../assets/technologyImages/machine_learning.png"
     },
     {
         "technology": "Deep Learning",
-        "level": 70,
-        "type": "ai_ml",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 75,
+        "type": 'AI / Machine Learning',
+                "image": "../assets/technologyImages/deep_learning.png"
     },
     {
         "technology": "AI Agents",
-        "level": 60,
-        "type": "ai_ml",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 70,
+        "type": 'AI / Machine Learning',
+                "image": "../assets/technologyImages/ai_agents.png"
     },
     {
         "technology": "Figma",
-        "level": 70,
-        "type": "design",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 85,
+        "type": "Design",
+        "image": "../assets/technologyImages/figma.png"
     },
     {
         "technology": "Lucidchart",
-        "level": 70,
-        "type": "design",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 80,
+        "type": "Design",
+        "image": "../assets/technologyImages/lucidchart.png"
     },
     {
         "technology": "Draw.io",
         "level": 80,
-        "type": "design",
-        "image": "../assets/technologyImages/git.jpg"
+        "type": "Design",
+        "image": "../assets/technologyImages/drawio.png"
     },
     {
         "technology": "AWS",
-        "level": 80,
-        "type": "cloud",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 90,
+        "type": "Cloud",
+        "image": "../assets/technologyImages/aws.png"
     },
     {
         "technology": "Azure",
-        "level": 60,
-        "type": "cloud",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 75,
+        "type": "Cloud",
+        "image": "../assets/technologyImages/azure.png"
     },
     {
         "technology": "MySQL",
-        "level": 80,
-        "type": "database",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 85,
+        "type": "Database",
+        "image": "../assets/technologyImages/mysql.png"
     },
     {
         "technology": "MongoDB",
+        "level": 85,
+        "type": "Database",
+        "image": "../assets/technologyImages/mongodb.png"
+    },
+    {
+        "technology": "DynamoDB",
         "level": 80,
-        "type": "database",
-        "image": "../assets/technologyImages/git.jpg"
+        "type": "Database",
+        "image": "../assets/technologyImages/dynamodb.png"
     },
     {
         "technology": "Linux Commands",
-        "level": 90,
-        "type": "linux",
-        "image": "../assets/technologyImages/react.webp"
+        "level": 85,
+        "type": "Linux",
+        "image": "../assets/technologyImages/linux_commands.png"
     },
     {
         "technology": "Bash Scripting",
-        "level": 80,
-        "type": "linux",
-        "image": "../assets/technologyImages/git.jpg"
+        "level": 75,
+        "type": "Linux",
+        "image": "../assets/technologyImages/bash_scripting.png"
+    },
+    {
+        "technology": "Flutter",
+        "level": 75,
+        "type": "Mobile",
+        "image": "../assets/technologyImages/flutter.png"
     }
+
+
 ]
 
 url = f"{client.base_url}/technology"

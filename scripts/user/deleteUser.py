@@ -2,7 +2,7 @@ import requests
 
 
 class PortfolioClient:
-    def __init__(self, base_url="http://localhost:3000/api"):
+    def __init__(self, base_url="https://backend.kavindu-gihan.online/api"):
         self.base_url = base_url
         self.session = requests.Session()  # keeps cookies (admin_token)
 

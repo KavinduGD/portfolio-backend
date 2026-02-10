@@ -16,32 +16,37 @@ if not ok:
 # --------- Skills to add ----------
 skills = [
     {
-        "skill": "Web Development",
-        "description": "Building resEnd-to-end organization, ui/ux design, optimization, and maintenance of your mobile app project. technologies.",
-        "image": "../assets/skillImages/web-dev.svg",
+        "skill": "DevOps Engineering",
+        "description": "Designing, automating, and maintaining cloud-native infrastructure using CI/CD pipelines, GitOps practices, infrastructure as code, and container orchestration to ensure reliable and scalable deployments.",
+        "image": "../assets/skillImages/devops.png",
     },
     {
-        "skill": "UI/UX Design",
-        "description": "Designing End-to-end organization, ui/ux design, optimization, and maintenance of your mobile app project.ncing user experience.",
-        "image": "../assets/skillImages/web-dev.svg",
+        "skill": "Cloud & Infrastructure Engineering",
+        "description": "Building and managing scalable cloud infrastructure on AWS and Azure, including networking, compute, storage, and security, with a strong focus on automation and reliability.",
+        "image": "../assets/skillImages/cloud.png",
     },
     {
-        "skill": "Project Management",
-        "description": "PlannEnd-to-end organization, ui/ux design, optimization, and maintenance of your mobile app project.efficiently and effectively.",
-        "image": "../assets/skillImages/web-dev.svg",
+        "skill": "Full-Stack Web Development",
+        "description": "Developing end-to-end web applications using modern frontend and backend technologies, ensuring seamless integration with cloud services, APIs, and automated deployment pipelines.",
+        "image": "../assets/skillImages/web.png",
     },
     {
-        "skill": "Data Analysis",
-        "description": "Analyzing dataEnd-to-end organization, ui/ux design, optimization, and maintenance of your mobile app project.support decision-making.",
-        "image": "../assets/skillImages/web-dev.svg",
+        "skill": "CI/CD & Automation",
+        "description": "Implementing robust CI/CD pipelines using tools like GitHub Actions, Jenkins, GitLab CI/CD, and AWS CodePipeline to automate testing, building, and deployment workflows.",
+        "image": "../assets/skillImages/cicd.png",
     },
     {
-        "skill": "Digital Marketing",
-        "description": "Promoting products or End-to-end organization, ui/ux design, optimization, and maintenance of your mobile app project.digital channels to reach a wider audience.",
-        "image": "../assets/skillImages/web-dev.svg",
+        "skill": "AI & Machine Learning Systems",
+        "description": "Building and deploying machine learning and deep learning solutions, including model training, evaluation, and production deployment with cloud-native and scalable architectures.",
+        "image": "../assets/skillImages/ml.png",
     },
-
+    {
+        "skill": "System Design & Architecture",
+        "description": "Designing scalable, reliable, and maintainable systems using microservices, containerized architectures, and cloud-native design principles with a strong focus on performance and security.",
+        "image": "../assets/skillImages/system.png",
+    },
 ]
+
 
 url = f"{client.base_url}/skill"
 

@@ -92,12 +92,9 @@ jobs:
 
       - name: Update backend image tag
         run: |
-          pwd
-          ls -la
+
           cd portfolio-manifests
-          ls -la
-          ls ./prod
-          ls ./stage
+
           TAG="${{ needs.docker_image_build_and_push.outputs.image_tag }}"
 
           if [ "${{ github.ref_name }}" = "main" ]; then
