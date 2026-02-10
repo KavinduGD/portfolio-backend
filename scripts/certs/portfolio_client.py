@@ -8,7 +8,7 @@ class PortfolioClient:
     - Handles admin login
     """
 
-    def __init__(self, base_url="https://stage-backend.kavindu-gihan.online/api"):
+    def __init__(self, base_url="https://backend.kavindu-gihan.online/api"):
         self.base_url = base_url
         self.session = requests.Session()
 
