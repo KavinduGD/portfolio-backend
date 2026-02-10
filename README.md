@@ -36,9 +36,11 @@ The system follows a cloud-native architecture deployed on AWS.
     *   Automatically syncs the new state to the EKS cluster.
     *   Zero-touch deployment for both Staging and Production environments.
 
-### System Diagram
-*(Refer to the architecture diagrams included in the project documentation for visual details on VPC peering, Load Balancers, and EKS node structure.)*
+### Cluster Architecture
+![Cluster Architecture](assets/cluster-setup.png)
 
+### System Workflow
+![System Architecture](assets/architecture-diagram.png)
 ---
 
 ## 🚀 Features
