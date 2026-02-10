@@ -83,7 +83,7 @@ user_data = {
             "degree": "BSc (Hons) in Software Engineering",
             "startYear": "2021",
             "endYear": "present",
-            "results": "3.1 GPA",
+            "results": "3.25 GPA",
             "location": "Malabe"
         }
     ]
