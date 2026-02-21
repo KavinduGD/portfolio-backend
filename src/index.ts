@@ -33,6 +33,13 @@ app.use("/api/skill", skillRoutes);
 app.use("/api/certificate", certificateRoutes);
 app.use("/api/project", projectRoutes);
 
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).json({
+    status: "OK",
+    service: "Backend API",
+  });
+});
+
 // Error Handling Middleware
 app.use(errorHandler);
 
