@@ -176,7 +176,8 @@ projects = [
                 "link": "https://github.com/KavinduGD/portfolio-infra"},
             {"linkName": "Manifest GitHub",
                 "link": "https://github.com/KavinduGD/portfolio-manifests"},
-            {"linkName": "Frontend Live Demo", "link": "https://kavindu-gihan.online/"},
+            {"linkName": "Frontend Live Demo",
+                "link": "https://kavindu-gihan.online/"},
             {"linkName": "Admin Live Demo",
                 "link": "https://admin.kavindu-gihan.online/"},
             {"linkName": "Lucidchart", "link": "https://lucid.app/lucidchart/a271f945-410d-4e4f-8e03-0017d28997c2/edit?viewport_loc=4764%2C-1252%2C5104%2C2980%2C0_0&invitationId=inv_2f892674-66b2-4607-9dab-595ba1438a70"},
@@ -202,6 +203,33 @@ projects = [
             {"diagramName": "Argocd Diagram",
              "image": "../assets/projectImages/portfolio/argo-arch.png"
              }
+        ]
+    },
+    {
+        "projectName": "Project using wso2 services",
+        "projectDescription": "This is a cloud-based Recipe Management System built with React and Node.js. Users can securely create, view, update, and delete recipes. Authentication is handled using Asgardeo. Both frontend and backend services are deployed on WSO2 Choreo, ensuring secure, scalable, and cloud-native application management.",
+        "startedDate": "2026-02-22",
+        "technologies": ["JavaScript", "React", "Nodejs", "MongoDB", "GitHub", "Lucidchart",],
+        "links": [
+            {"linkName": "Backend GitHub",
+                "link": "https://github.com/KavinduGD/portfolio-backend"},
+            {"linkName": "Frontend GitHub",
+                "link": "https://github.com/KavinduGD/recipe_frontned"},
+            {"linkName": "Frontend Live Demo",
+                "link": "https://436f4379-7f55-44b5-b30e-7c69c9573686.e1-us-east-azure.choreoapps.dev/"},
+        ],
+        "architectureDescription": "The system consists of a React frontend, Node.js backend API, and Asgardeo for authentication. The frontend communicates with the backend using secured REST APIs. Users authenticate through Asgardeo and receive access tokens. WSO2 Choreo manages deployment, service connectivity, and cloud infrastructure for both application components.",
+        "tags": ["Full stack web development", "Cloud", "API Management", "Authentication"],
+        "score": 80,
+        "projectImages": [
+            "../assets/projectImages/wso2/p1.png",
+            "../assets/projectImages/wso2/p2.png"
+        ],
+        "architectureImages": [
+            {
+                "diagramName": "Cluster Architecture",
+                "image": "../assets/projectImages/wso2/arch.png"
+            },
         ]
     }
 ]
